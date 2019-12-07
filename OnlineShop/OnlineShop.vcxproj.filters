@@ -45,10 +45,10 @@
     <ClCompile Include="ClientBuilder.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Sale.cpp">
+    <ClCompile Include="SaleBuilder.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SaleBuilder.cpp">
+    <ClCompile Include="Sale.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -89,13 +89,13 @@
     <ClInclude Include="ClientData.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="SaleBuilder.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="SaleData.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Sale.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SaleBuilder.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

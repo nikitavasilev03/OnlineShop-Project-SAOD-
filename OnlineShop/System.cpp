@@ -220,7 +220,7 @@ void System::LoadData() {
 		s_pcount >> pcount;
 		s_summary_pay >> summary_pay;
 
-		if (s_id.fail() || s_product_id.fail() || s_client_id.fail() || s_pcount.fail() || s_summary_pay.fail || date_sale.year == -1 || date_delivery.year == -1) {
+		if (s_id.fail() || s_product_id.fail() || s_client_id.fail() || s_pcount.fail() || s_summary_pay.fail() || date_sale.year == -1 || date_delivery.year == -1) {
 			cout << "Load Error" << endl;
 			continue;
 		}

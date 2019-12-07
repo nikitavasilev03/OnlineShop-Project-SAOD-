@@ -3,10 +3,13 @@
 #include "ProductData.h"
 #include "ClientData.h"
 #include "SaleData.h"
+
 #include "Shell.h"
+
 #include "ProductBuilder.h"
 #include "ClientBuilder.h"
 #include "SaleBuilder.h"
+
 #include "stdafx.h"
 
 class System

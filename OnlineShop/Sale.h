@@ -1,8 +1,10 @@
 #pragma once
+
 #include "Entity.h"
 #include "System.h"
 
-class Sale : public Entity
+class Sale :
+	public Entity
 {
 private:
 	int product_id;
@@ -26,3 +28,4 @@ public:
 
 	string ToString() override;
 };
+

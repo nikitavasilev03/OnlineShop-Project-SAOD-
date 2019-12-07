@@ -14,6 +14,24 @@ Sale::Sale(int id, int _product_id, int _client_id, Date _date_sale, Date _date_
 	summary_pay = 0;
 }
 
+//Sale::Sale(int _product_id, int _client_id, Date _date_sale, Date _date_delivery, int _count) : Entity() {
+//	product_id = _product_id;
+//	client_id = _client_id;
+//	pcount = _count;
+//	summary_pay = 0;
+//	date_sale = Date(0, 0, 0);
+//	date_delivery = Date(0, 0, 0);
+//}
+//
+//Sale::Sale(int id, int _product_id, int _client_id, Date _date_sale, Date _date_delivery, int _count) : Entity(id) {
+//	product_id = _product_id;
+//	client_id = _client_id;
+//	pcount = _count;
+//	summary_pay = 0;
+//	date_sale = Date(0, 0, 0);
+//	date_delivery = Date(0, 0, 0);
+//}
+
 int Sale::GetProductID() {
 	return product_id;
 }
@@ -43,6 +61,6 @@ string Sale::ToString() {
 		to_string(client_id) + " " +
 		System::DateToString(date_sale) + " " +
 		System::DateToString(date_delivery) + " " +
-		to_string(pcount) + " " + 
+		to_string(pcount) + " " +
 		to_string(summary_pay);
 }

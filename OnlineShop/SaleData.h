@@ -1,7 +1,6 @@
 #pragma once
+
 #include "ListData.h"
-#include "Client.h"
-#include "Product.h"
 #include "Sale.h"
 
 class SaleData : public ListData
@@ -15,42 +14,59 @@ public:
 		if (item->GetID() == 0)
 			item->SetID(NextID());
 		
-		Sale* sale = (Sale*)&(*item);
-		Product* product = NULL;
-		for (auto i : *System::GetProducts()->GetItems())
-		{
-			if (item->GetID() == sale->GetProductID()) {
-				product = (Product*)&(*i);
-				break;
-			}
-		}
+		ListData::Add(item);
+		
+		Sale* sale = (Sale*)item->GetEntity();
+		//auto sale = 
 
-		Client* client = NULL;
-		for (auto i : *System::GetClients()->GetItems())
-		{
-			if (item->GetID() == sale->GetClientID()) {
-				client = (Client*)&(*i);
-				break;
-			}
-		}
+		// Product* product = NULL;
+		//for (auto i : *(System::GetProducts()->GetItems()))
+		//{
+		//	if (item->GetID() == sale->GetProductID()) {
+		//		product = (Product*)&(*i);
+		//		//break;
+		//	}
+		//}
 
-		if (client && product) {
+		//for (auto i = System::GetProducts()->GetItems()->begin(); i != System::GetProducts()->GetItems()->end(); i++) {
+		//	if ((*i)->GetID() == sale->GetProductID()) {
+		//		product = (Product*)&(*i);
+		//		//break;
+		//	}
+		//}
 
-			if (client->IsRegularClient())
-				sale->SetSummaryPay(sale->GetCount() * product->GetPrice() / 100 * 98);
-			else
-				sale->SetSummaryPay(sale->GetCount() * product->GetPrice());
+		// Client* client = NULL;
+		//for (auto i : *(System::GetClients()->GetItems()))
+		//{
+		//	if (item->GetID() == sale->GetClientID()) {
+		//		client = (Client*)&(*i);
+		//		//break;
+		//	}
+		//}
+		//for (auto i = System::GetClients()->GetItems()->begin(); i != System::GetClients()->GetItems()->end(); i++) {
+		//	if ((*i)->GetID() == sale->GetProductID()) {
+		//		client = (Client*)&(*i);
+		//		//break;
+		//	}
+		//}
 
-			client->IncTotalMoney(sale->GetSummatyPay());
-			if (client->GetTotalMoney() >= client->TOTAL_PAY_FOR_REGULAR_CLIENT)
-				client->SetRegularClient();
+		//if (client && product) {
 
-			ListData::Add(item);
-		}
-		else
-		{
-			throw exception("No foreign key matches");
-		}
+		//	if (client->IsRegularClient())
+		//		sale->SetSummaryPay(sale->GetCount() * product->GetPrice() / 100 * 98);
+		//	else
+		//		sale->SetSummaryPay(sale->GetCount() * product->GetPrice());
+
+		//	client->IncTotalMoney(sale->GetSummatyPay());
+		//	if (client->GetTotalMoney() >= client->TOTAL_PAY_FOR_REGULAR_CLIENT)
+		//		client->SetRegularClient();
+
+		//	ListData::Add(item);
+		//}
+		//else
+		//{
+		//	throw exception("No foreign key matches");
+		//}
 	}
 };
 

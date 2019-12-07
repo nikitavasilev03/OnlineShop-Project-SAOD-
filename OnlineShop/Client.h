@@ -22,10 +22,6 @@ public:
 	Client(int id, string _second_name, string _first_name, string _email, string _last_name = "", string _address = "", string _phone = "");
 	Client(string _second_name, string _first_name, string _email, string _last_name = "", string _address = "", string _phone = "");
 	
-	void SetRegularClient(bool value = true) {
-		isRegularClient = value;
-	}
-
 	string GetSecondName();
 	string GetFirstName();
 	string GetLastName();

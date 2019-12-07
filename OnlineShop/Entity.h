@@ -16,7 +16,9 @@ public:
 	void SetID(int value);
 	
 	virtual string ToString() = 0;
-
+	virtual Entity* GetEntity() {
+		return this;
+	}
 
 	bool operator == (const Entity& obj) const {
 		return id == obj.id;

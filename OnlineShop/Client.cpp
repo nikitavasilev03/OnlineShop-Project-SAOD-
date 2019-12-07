@@ -68,7 +68,7 @@ int Client::GetTotalMoney() {
 	return total_money;
 }
 
-void Client::SetRegularClient(bool f = true) {
+void Client::SetRegularClient(bool f) {
 	isRegularClient = f;
 }
 void Client::SetTotalMoney(int money) {
