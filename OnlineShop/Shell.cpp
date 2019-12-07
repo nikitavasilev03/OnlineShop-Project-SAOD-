@@ -58,6 +58,10 @@ void Shell::Start() {
 				listData = System::GetClients();
 				eb = (shared_ptr<EntityBuilder>)(new ClientBuilder());
 			}
+			else if (strs[1] == "sale" || strs[1] == "sales") {
+				listData = System::GetSales();
+				eb = (shared_ptr<EntityBuilder>)(new SaleBuilder());
+			}
 
 			//Тип операции
 			if (strs[0] == "add" && listData) {

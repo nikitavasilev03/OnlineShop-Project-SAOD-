@@ -2,9 +2,11 @@
 
 #include "ProductData.h"
 #include "ClientData.h"
+#include "SaleData.h"
 #include "Shell.h"
 #include "ProductBuilder.h"
 #include "ClientBuilder.h"
+#include "SaleBuilder.h"
 #include "stdafx.h"
 
 class System
@@ -12,6 +14,7 @@ class System
 private:
 	static shared_ptr<ProductData> products;
 	static shared_ptr<ClientData> clients;
+	static shared_ptr<SaleData> sales;
 public:
 
 	static void Start();
@@ -28,5 +31,6 @@ public:
 
 	static shared_ptr<ProductData> GetProducts();
 	static shared_ptr<ClientData> GetClients();
+	static shared_ptr<SaleData> GetSales();
 };
 
