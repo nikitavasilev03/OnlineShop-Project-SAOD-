@@ -1,14 +1,14 @@
 #include "System.h"
 
-shared_ptr<ProductData> System::products = NULL;
-shared_ptr<ClientData> System::clients = NULL;
-shared_ptr<SaleData> System::sales = NULL;
+shared_ptr<ProductsData> System::products = NULL;
+shared_ptr<ClientsData> System::clients = NULL;
+shared_ptr<SalesData> System::sales = NULL;
 
 void System::Start() {
 
-	products = (shared_ptr<ProductData>)(new ProductData());
-	clients = (shared_ptr<ClientData>)(new ClientData());
-	sales = (shared_ptr<SaleData>)(new SaleData());
+	products = (shared_ptr<ProductsData>)(new ProductsData());
+	clients = (shared_ptr<ClientsData>)(new ClientsData());
+	sales = (shared_ptr<SalesData>)(new SalesData());
 
 	Shell shell;
 	shell.Start();
@@ -238,13 +238,13 @@ void System::LoadData() {
 	cout << "LOADING IS COMPLITE" << endl;
 }
 
-shared_ptr<ProductData> System::GetProducts() {
+shared_ptr<ProductsData> System::GetProducts() {
 	return products;
 }
-shared_ptr<ClientData> System::GetClients() {
+shared_ptr<ClientsData> System::GetClients() {
 	return clients;
 }
-shared_ptr<SaleData>  System::GetSales() {
+shared_ptr<SalesData>  System::GetSales() {
 	return sales;
 }
 

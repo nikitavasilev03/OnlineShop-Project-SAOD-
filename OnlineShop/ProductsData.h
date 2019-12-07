@@ -3,7 +3,7 @@
 #include "ListData.h"
 #include "Product.h"
 
-class ProductData : public ListData
+class ProductsData : public ListData
 {
 public:
 	void Add(shared_ptr<Entity> item) override {
@@ -12,6 +12,7 @@ public:
 		if (item->GetID() == 0)
 			item->SetID(NextID());
 		ListData::Add(item);
+		Product* product = NULL;
 	}
 };
 

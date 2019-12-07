@@ -14,6 +14,7 @@ private:
 	int pcount;
 	int summary_pay;
 public:
+	Sale();
 	Sale(int _product_id, int _client_id, Date _date_sale, Date _date_delivery, int _count);
 	Sale(int id, int _product_id, int _client_id, Date _date_sale, Date _date_delivery, int _count);
 

@@ -167,16 +167,16 @@
   <ItemGroup>
     <ClInclude Include="Client.h" />
     <ClInclude Include="ClientBuilder.h" />
-    <ClInclude Include="ClientData.h" />
+    <ClInclude Include="ClientsData.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="EntityBuilder.h" />
     <ClInclude Include="ListData.h" />
     <ClInclude Include="Product.h" />
     <ClInclude Include="ProductBuilder.h" />
-    <ClInclude Include="ProductData.h" />
+    <ClInclude Include="ProductsData.h" />
     <ClInclude Include="Sale.h" />
     <ClInclude Include="SaleBuilder.h" />
-    <ClInclude Include="SaleData.h" />
+    <ClInclude Include="SalesData.h" />
     <ClInclude Include="Shell.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="System.h" />

@@ -3,7 +3,7 @@
 #include "ListData.h"
 #include "Client.h"
 
-class ClientData : public ListData
+class ClientsData : public ListData
 {
 private:
 

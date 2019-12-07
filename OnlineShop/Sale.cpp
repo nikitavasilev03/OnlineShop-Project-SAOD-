@@ -1,5 +1,12 @@
 #include "Sale.h"
 
+Sale::Sale() : Entity(), date_sale(0, 0, 0), date_delivery(0, 0, 0) {
+	product_id = 0;
+	client_id = 0;
+	pcount = 0;
+	summary_pay = 0;
+}
+
 Sale::Sale(int _product_id, int _client_id, Date _date_sale, Date _date_delivery, int _count) : Entity(), date_sale(_date_sale), date_delivery(_date_delivery) {
 	product_id = _product_id;
 	client_id = _client_id;
@@ -13,24 +20,6 @@ Sale::Sale(int id, int _product_id, int _client_id, Date _date_sale, Date _date_
 	pcount = _count;
 	summary_pay = 0;
 }
-
-//Sale::Sale(int _product_id, int _client_id, Date _date_sale, Date _date_delivery, int _count) : Entity() {
-//	product_id = _product_id;
-//	client_id = _client_id;
-//	pcount = _count;
-//	summary_pay = 0;
-//	date_sale = Date(0, 0, 0);
-//	date_delivery = Date(0, 0, 0);
-//}
-//
-//Sale::Sale(int id, int _product_id, int _client_id, Date _date_sale, Date _date_delivery, int _count) : Entity(id) {
-//	product_id = _product_id;
-//	client_id = _client_id;
-//	pcount = _count;
-//	summary_pay = 0;
-//	date_sale = Date(0, 0, 0);
-//	date_delivery = Date(0, 0, 0);
-//}
 
 int Sale::GetProductID() {
 	return product_id;

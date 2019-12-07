@@ -1,8 +1,8 @@
 #pragma once
 
-#include "ProductData.h"
-#include "ClientData.h"
-#include "SaleData.h"
+#include "ProductsData.h"
+#include "ClientsData.h"
+#include "SalesData.h"
 
 #include "Shell.h"
 
@@ -15,9 +15,9 @@
 class System
 {
 private:
-	static shared_ptr<ProductData> products;
-	static shared_ptr<ClientData> clients;
-	static shared_ptr<SaleData> sales;
+	static shared_ptr<ProductsData> products;
+	static shared_ptr<ClientsData> clients;
+	static shared_ptr<SalesData> sales;
 public:
 
 	static void Start();
@@ -32,8 +32,8 @@ public:
 	static Date DateFromString(string in_str);
 	static string DateToString(Date in_date);
 
-	static shared_ptr<ProductData> GetProducts();
-	static shared_ptr<ClientData> GetClients();
-	static shared_ptr<SaleData> GetSales();
+	static shared_ptr<ProductsData> GetProducts();
+	static shared_ptr<ClientsData> GetClients();
+	static shared_ptr<SalesData> GetSales();
 };
 
