@@ -4,11 +4,11 @@
 
 struct Date {
 	int day;
-	int mounth;
+	int month;
 	int year;
 	Date(int _day, int _mounth, int _year) {
 		day = _day;
-		mounth = _mounth;
+		month = _mounth;
 		year = _year;
 	}
 };

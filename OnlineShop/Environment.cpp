@@ -29,7 +29,7 @@ Date DateFromString(string in_str) {
 }
 
 string DateToString(Date in_date) {
-	return to_string(in_date.day) + "." + to_string(in_date.mounth) + "." + to_string(in_date.year);
+	return to_string(in_date.day) + "." + to_string(in_date.month) + "." + to_string(in_date.year);
 }
 
 string input(istream& strm) {
