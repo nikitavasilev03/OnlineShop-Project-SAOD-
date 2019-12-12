@@ -9,7 +9,7 @@ void System::Add(shared_ptr<EntityBuilder> entityBuilder) {
 	try
 	{
 		auto obj = entityBuilder->Create();
-		Tables::AddToData(obj);
+		Tables::AddToItem(obj);
 	}
 	catch (const std::exception & exp)
 	{
@@ -17,8 +17,17 @@ void System::Add(shared_ptr<EntityBuilder> entityBuilder) {
 	}
 }
 
-void System::Remove(shared_ptr<ListData> listData, int id) {
-
+void System::Remove(shared_ptr<EntityBuilder> entityBuilder, int id) {
+	try
+	{
+		auto obj = entityBuilder->CreateEmpty();
+		obj->SetID(id);
+		Tables::RemoveItem(obj);
+	}
+	catch (const std::exception & exp)
+	{
+		cout << exp.what() << endl;
+	}
 }
 void System::Edit(shared_ptr<EntityBuilder> entityBuilder, int id) {
 	try

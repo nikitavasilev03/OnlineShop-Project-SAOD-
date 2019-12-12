@@ -1,5 +1,9 @@
 #include "Client.h"
 
+Client::Client() {
+	Init("", "", "", "", "", "");
+}
+
 Client::Client(string _second_name, string _first_name, string _email, string _last_name, string _address, string _phone) : Entity() {
 	Init(_second_name, _first_name, _email, _last_name, _address, _phone);
 }

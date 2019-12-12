@@ -15,10 +15,11 @@ void ListData::Remove(int id) {
 	for (auto item : items) {
 		if (item->GetID() == id)
 		{
-			items.remove(item);
-			break;
+			Remove(item);
+			return;
 		}
 	}
+	throw exception("Error! Object not found");
 }
 
 int ListData::GetCount() {

@@ -29,6 +29,19 @@ void Shell::Start() {
 			if (strs[0] == "clear") {
 				system("CLS");
 			}
+			if (strs[0] == "help") {
+				cout << "command help: выводит список доступных команд в среде" << endl;
+				cout << "command clear: очищает консоль" << endl;
+				cout << "command exit: выход" << endl;
+				cout << "command add: добавить объект в таблицу, параметры (tablename)" << endl;
+				cout << "command edit: изменить объект в таблице, параметры (tablename, id)" << endl;
+				cout << "command remove: удалить объект из таблицы, параметры (tablename, id)" << endl;
+				cout << "command print: вывести все объекты из таблицы, параметры (tablename)" << endl;
+				cout << "command tables: выводит список доступных таблиц" << endl;
+			}
+			if (strs[0] == "tables") {
+				cout << "products, clients, sales" << endl;
+			}
 			else if (strs[0] == "exit") {
 				cout << "Сохранить базу данных? (y/n)" << endl;
 				cout << "-> ";
@@ -60,7 +73,7 @@ void Shell::Start() {
 				eb = (shared_ptr<EntityBuilder>)(new SaleBuilder());
 			}
 			if (strs.size() == 2) {
-				if (strs[0] == "add" && listData) {
+				if (strs[0] == "add" && eb) {
 					System::Add(eb);
 				}
 				else if (strs[0] == "print" && listData) {
@@ -71,7 +84,7 @@ void Shell::Start() {
 				}
 			}
 			else if (strs.size() == 3) {
-				if (strs[0] == "edit" && listData) {
+				if (strs[0] == "edit" && eb) {
 					int id;
 					istringstream to_int(strs[2]);
 					to_int >> id;
@@ -82,11 +95,21 @@ void Shell::Start() {
 						System::Edit(eb, id);
 					}
 				}
+				if (strs[0] == "remove" && eb) {
+					int id;
+					istringstream to_int(strs[2]);
+					to_int >> id;
+					if (to_int.fail()) {
+						cout << "Некоректный ввод" << endl;
+					}
+					else {
+						System::Remove(eb, id);
+					}
+				}
 			}
 			else {
 				cout << "Некоректный ввод" << endl;
 			}
-			
 		}
 		else {
 			cout << "Некоректный ввод" << endl;

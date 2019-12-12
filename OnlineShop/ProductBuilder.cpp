@@ -43,3 +43,7 @@ shared_ptr<Entity> ProductBuilder::CreateFromInputStream() {
 
 	return (shared_ptr<Entity>)(new Product(name, price, (MeasurementType)iuom));
 }
+
+shared_ptr<Entity> ProductBuilder::CreateEmpty() {
+	return (shared_ptr<Entity>)(new Product());
+}

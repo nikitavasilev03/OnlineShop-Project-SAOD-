@@ -40,3 +40,7 @@ shared_ptr<Entity> ClientBuilder::CreateFromInputStream() {
 	address = input(cin);
 	return  (shared_ptr<Entity>)(new Client(second_name, first_name, email, last_name, address, phone));
 }
+
+shared_ptr<Entity> ClientBuilder::CreateEmpty() {
+	return (shared_ptr<Entity>)(new Client());
+}

@@ -51,3 +51,7 @@ shared_ptr<Entity> SaleBuilder::CreateFromInputStream() {
 
 	return (shared_ptr<Sale>)(new Sale(product_id, client_id, date_sale, date_delivery, pcount));
 }
+
+shared_ptr<Entity> SaleBuilder::CreateEmpty() {
+	return (shared_ptr<Entity>)(new Sale());
+}

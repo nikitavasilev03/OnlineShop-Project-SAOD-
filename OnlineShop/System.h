@@ -22,7 +22,7 @@ public:
 
 	static void Start();
 	static void Add(shared_ptr<EntityBuilder> entityBuilder);
-	static void Remove(shared_ptr<ListData> listData, int id);
+	static void Remove(shared_ptr<EntityBuilder> entityBuilder, int id);
 	static void Edit(shared_ptr<EntityBuilder> entityBuilder, int id);
 	static void Print(shared_ptr<ListData> listData);
 	static void Print(shared_ptr<ListData> listData, int id);

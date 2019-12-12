@@ -4,18 +4,18 @@ shared_ptr<ProductsData> Tables::products = (shared_ptr<ProductsData>)(new Produ
 shared_ptr<ClientsData> Tables::clients = (shared_ptr<ClientsData>)(new ClientsData());
 shared_ptr<SalesData> Tables::sales = (shared_ptr<SalesData>)(new SalesData());
 
-void Tables::AddToData(shared_ptr<Entity> entity) {
+void Tables::AddToItem(shared_ptr<Entity> entity) {
 	Entity* ent = entity->GetEntity();
 	Product* product = dynamic_cast<Product*>(ent);
 	Client* client = dynamic_cast<Client*>(ent);
 	Sale* sale = dynamic_cast<Sale*>(ent);
 
 	if (product)
-		AddToData(product, entity);
+		AddToItem(product, entity);
 	else if (client)
-		AddToData(client, entity);
+		AddToItem(client, entity);
 	else if (sale)
-		AddToData(sale, entity);
+		AddToItem(sale, entity);
 	else
 		throw exception("");
 }
@@ -34,14 +34,30 @@ void Tables::EditItem(shared_ptr<Entity> entity) {
 	else
 		throw exception("");
 }
+void Tables::RemoveItem(shared_ptr<Entity> entity) {
+	Entity* ent = entity->GetEntity();
+	Product* product = dynamic_cast<Product*>(ent);
+	Client* client = dynamic_cast<Client*>(ent);
+	Sale* sale = dynamic_cast<Sale*>(ent);
 
-void Tables::AddToData(Product* product, shared_ptr<Entity> entity) {
+	if (product)
+		RemoveItem(product, entity);
+	else if (client)
+		RemoveItem(client, entity);
+	else if (sale)
+		RemoveItem(sale, entity);
+	else
+		throw exception("");
+}
+
+//AddItem
+void Tables::AddToItem(Product* product, shared_ptr<Entity> entity) {
 	products->Add(entity);
 }
-void Tables::AddToData(Client* client, shared_ptr<Entity> entity) {
+void Tables::AddToItem(Client* client, shared_ptr<Entity> entity) {
 	clients->Add(entity);
 }
-void Tables::AddToData(Sale* sale, shared_ptr<Entity> entity) {
+void Tables::AddToItem(Sale* sale, shared_ptr<Entity> entity) {
 	Entity* ent_product = products->findById(sale->GetProductID());
 	Entity* ent_client = clients->findById(sale->GetClientID());
 	if (ent_product && ent_client) {
@@ -59,6 +75,8 @@ void Tables::AddToData(Sale* sale, shared_ptr<Entity> entity) {
 	else
 		throw exception("No foreign key matches");
 }
+
+//EditItem
 void Tables::EditItem(Product* product, shared_ptr<Entity> entity) {
 	products->EditItem(product);
 }
@@ -75,3 +93,27 @@ void Tables::EditItem(Sale* sale, shared_ptr<Entity> entity) {
 		throw exception("No foreign key matches");
 }
 
+//RemoveItem
+void Tables::RemoveItem(Product* product, shared_ptr<Entity> entity) {
+	for (auto ent_sale : *sales->GetItems())
+	{
+		Sale* sale = (Sale*)ent_sale->GetEntity();
+		if (sale->GetProductID() == product->GetID()) {
+			throw exception("Error! This object refers to sale", sale->GetID());
+		}
+	}
+	products->Remove(product->GetID());
+}
+void Tables::RemoveItem(Client* client, shared_ptr<Entity> entity) {
+	for (auto ent_sale : *sales->GetItems())
+	{
+		Sale* sale = (Sale*)ent_sale->GetEntity();
+		if (sale->GetClientID() == client->GetID()) {
+			throw exception("Error! This object refers to sale", sale->GetID());
+		}
+	}
+	clients->Remove(client->GetID());
+}
+void Tables::RemoveItem(Sale* sale, shared_ptr<Entity> entity) {
+	sales->Remove(sale->GetID());
+}
