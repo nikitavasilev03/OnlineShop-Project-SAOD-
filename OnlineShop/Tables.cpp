@@ -115,5 +115,21 @@ void Tables::RemoveItem(Client* client, shared_ptr<Entity> entity) {
 	clients->Remove(client->GetID());
 }
 void Tables::RemoveItem(Sale* sale, shared_ptr<Entity> entity) {
-	sales->Remove(sale->GetID());
+	Entity* ent_sale = sales->findById(sale->GetID());
+	if (ent_sale) {
+		Sale* cur_sale = (Sale*)ent_sale;
+		Entity* ent_client = clients->findById(cur_sale->GetClientID());
+		if (ent_client) {
+			Client* client = (Client*)ent_client;
+			client->IncTotalMoney(-cur_sale->GetSummatyPay());
+			if (client->GetTotalMoney() < client->TOTAL_PAY_FOR_REGULAR_CLIENT)
+				client->SetRegularClient(false);
+		}
+		sales->Remove(sale->GetID());
+	}
+	else
+	{
+		throw exception("Error! Not found sale");
+	}
+	
 }

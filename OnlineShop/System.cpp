@@ -84,7 +84,8 @@ void System::SaveData() {
 				pd->GetEmail() + "|" +
 				pd->GetAddress() + "|" +
 				pd->GetPhone() + "|" +
-				to_string(pd->IsRegularClient());
+				to_string(pd->IsRegularClient()) + "|" +
+				to_string(pd->GetTotalMoney());
 
 			fs << msg << endl;
 		}
@@ -161,12 +162,12 @@ void System::LoadData() {
 		if (msg == "")
 			continue;
 		auto strs = Split(msg, "|");
-		if (strs.size() != 8) {
+		if (strs.size() != 9) {
 			cout << "Load Error" << endl;
 			continue;
 		}
 
-		int id;
+		int id, total_money;
 		bool isRegularClient;
 
 		istringstream sid(strs[0]);
@@ -177,11 +178,13 @@ void System::LoadData() {
 		string address = strs[5];
 		string phone = strs[6];
 		istringstream sisRegularClient(strs[7]);
+		istringstream sisTotalMoney(strs[8]);
 
 		sisRegularClient >> isRegularClient;
 		sid >> id;
+		sisTotalMoney >> total_money;
 
-		if (sid.fail() || sisRegularClient.fail()) {
+		if (sid.fail() || sisRegularClient.fail() || sisTotalMoney.fail()) {
 			cout << "Load Error" << endl;
 			continue;
 		}
@@ -189,6 +192,7 @@ void System::LoadData() {
 		auto entity = (shared_ptr<Entity>)(new Client(id, second_name, first_name, email, last_name, address, phone));
 		auto client = (Client*)entity->GetEntity();
 		client->SetRegularClient(isRegularClient);
+		client->SetTotalMoney(total_money);
 		Tables::clients->Add(entity);
 	}
 	if (!fs.is_open()) {

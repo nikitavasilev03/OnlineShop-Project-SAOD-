@@ -60,11 +60,12 @@ void Sale::SetSummaryPay(int pay) {
 }
 
 string Sale::ToString() {
-	return to_string(GetID()) + " " +
-		to_string(product_id) + " " +
-		to_string(client_id) + " " +
-		DateToString(date_sale) + " " +
-		DateToString(date_delivery) + " " +
-		to_string(pcount) + " " +
-		to_string(summary_pay);
+	return 
+		"ID: " + to_string(GetID()) + ",  " +
+		"Product ID: " + to_string(product_id) + ",  " +
+		"Client ID: " + to_string(client_id) + ",  " +
+		"Date sale: " + DateToString(date_sale) + ",  " +
+		"Date delivery: " + DateToString(date_delivery) + ",  " +
+		"Count: " + to_string(pcount) + ",  " +
+		"Total price: " + to_string(summary_pay);
 }

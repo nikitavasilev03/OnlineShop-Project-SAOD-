@@ -102,5 +102,14 @@ void Client::SetPhone(string phone) {
 }
 
 string Client::ToString() {
-	return to_string(GetID()) + " " + second_name + " " + first_name + " " + last_name + " " + email + " " + phone + " " + address + " " + to_string(isRegularClient);
+	return
+		"ID: " + to_string(GetID()) + ",  " +
+		"Second name: " + second_name + ",  " +
+		"Firs name: " + first_name + ",  " +
+		"Last name: " + last_name + ",  " +
+		"Email: " + email + ",  " +
+		"Phone: " + phone + ",  " +
+		"Address: " + address + ",  " +
+		"Is regular client: " + to_string(isRegularClient) + ",  " +
+		"Total pay: " + to_string(total_money);
 }

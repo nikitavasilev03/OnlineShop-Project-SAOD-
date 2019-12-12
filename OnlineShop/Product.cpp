@@ -54,5 +54,9 @@ string Product::ToString() {
 	default:
 		break;
 	}
-	return to_string(GetID()) +  " " + name + " " + to_string(price) + " " + str_uom;
+	return 
+		"ID: " + to_string(GetID()) +  ",  " + 
+		"Name: " + name + ",  " + 
+		"Price: " + to_string(price) + ",  " + 
+		"UOM: " + str_uom;
 }
