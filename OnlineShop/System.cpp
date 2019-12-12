@@ -20,8 +20,17 @@ void System::Add(shared_ptr<EntityBuilder> entityBuilder) {
 void System::Remove(shared_ptr<ListData> listData, int id) {
 
 }
-void System::Edit(shared_ptr<ListData> listData, int id) {
-
+void System::Edit(shared_ptr<EntityBuilder> entityBuilder, int id) {
+	try
+	{
+		auto obj = entityBuilder->Create();
+		obj->SetID(id);
+		Tables::EditItem(obj);
+	}
+	catch (const std::exception & exp)
+	{
+		cout << exp.what() << endl;
+	}
 }
 void System::Print(shared_ptr<ListData> listData) {
 	for (auto item : *listData->GetItems())
@@ -104,7 +113,6 @@ void System::LoadData() {
 	fs.open("tableProducts.table", fstream::in);
 	while (fs.is_open() && !fs.eof())
 	{
-		//getline(fs, msg);
 		msg = input(fs);
 		if (msg == "")
 			continue;

@@ -8,10 +8,7 @@ class ClientsData : public ListData
 private:
 
 public:
-	void Add(shared_ptr<Entity> item) override {
-		if (item->GetID() == 0)
-			item->SetID(NextID());
-		ListData::Add(item);
-	}
+	void Add(shared_ptr<Entity> item) override;
+	void EditItem(Entity* new_item) override;
 };
 

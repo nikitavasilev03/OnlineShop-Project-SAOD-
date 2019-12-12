@@ -40,6 +40,21 @@ int Sale::GetSummatyPay() {
 	return summary_pay;
 }
 
+void Sale::SetProductID(int id) {
+	this->product_id = id;
+}
+void Sale::SetClientID(int id) {
+	this->client_id = id;
+}
+void Sale::SetDateSale(Date date) {
+	this->date_sale = date;
+}
+void Sale::SetDateDelivery(Date date) {
+	this->date_delivery = date;
+}
+void Sale::SetCount(int _count) {
+	this->pcount = _count;
+}
 void Sale::SetSummaryPay(int pay) {
 	summary_pay = pay;
 }

@@ -44,7 +44,7 @@ void Shell::Start() {
 				cout << "Некоректный ввод" << endl;
 			}
 		}
-		else if (strs.size() == 2) {
+		else if (strs.size() >= 2) {
 			shared_ptr<ListData> listData = NULL;
 			shared_ptr<EntityBuilder> eb = NULL;
 			if (strs[1] == "product" || strs[1] == "products") {
@@ -59,17 +59,34 @@ void Shell::Start() {
 				listData = System::GetSales();
 				eb = (shared_ptr<EntityBuilder>)(new SaleBuilder());
 			}
-
-			//Тип операции
-			if (strs[0] == "add" && listData) {
-				System::Add(eb);
+			if (strs.size() == 2) {
+				if (strs[0] == "add" && listData) {
+					System::Add(eb);
+				}
+				else if (strs[0] == "print" && listData) {
+					System::Print(listData);
+				}
+				else {
+					cout << "Некоректный ввод" << endl;
+				}
 			}
-			else if (strs[0] == "print" && listData) {
-				System::Print(listData);
+			else if (strs.size() == 3) {
+				if (strs[0] == "edit" && listData) {
+					int id;
+					istringstream to_int(strs[2]);
+					to_int >> id;
+					if (to_int.fail()) {
+						cout << "Некоректный ввод" << endl;
+					}
+					else {
+						System::Edit(eb, id);
+					}
+				}
 			}
 			else {
 				cout << "Некоректный ввод" << endl;
-			}	
+			}
+			
 		}
 		else {
 			cout << "Некоректный ввод" << endl;

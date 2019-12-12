@@ -25,6 +25,11 @@ public:
 	int GetCount();
 	int GetSummatyPay();
 
+	void SetProductID(int id);
+	void SetClientID(int id);
+	void SetDateSale(Date date);
+	void SetDateDelivery(Date date);
+	void SetCount(int _count);
 	void SetSummaryPay(int pay);
 
 	string ToString() override;

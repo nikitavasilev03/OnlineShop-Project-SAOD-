@@ -78,6 +78,25 @@ void Client::IncTotalMoney(int money) {
 	total_money += money;
 }
 
+void Client::SetSecondName(string name) {
+	this->second_name = name;
+}
+void Client::SetFirstName(string name) {
+	this->first_name = name;
+}
+void Client::SetLastName(string name) {
+	this->last_name = name;
+}
+void Client::SetAddress(string address) {
+	this->address = address;
+}
+void Client::SetEmail(string email) {
+	this->email = email;
+}
+void Client::SetPhone(string phone) {
+	this->phone = phone;
+}
+
 string Client::ToString() {
 	return to_string(GetID()) + " " + second_name + " " + first_name + " " + last_name + " " + email + " " + phone + " " + address + " " + to_string(isRegularClient);
 }

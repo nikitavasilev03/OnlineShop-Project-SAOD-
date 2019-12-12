@@ -31,10 +31,15 @@ public:
 	bool IsRegularClient();
 	int GetTotalMoney();
 
+	void SetSecondName(string name);
+	void SetFirstName(string name);
+	void SetLastName(string name);
+	void SetAddress(string address);
+	void SetEmail(string email);
+	void SetPhone(string phone);
 	void SetRegularClient(bool f = true);
 	void SetTotalMoney(int money);
 	void IncTotalMoney(int money);
 
 	string ToString() override;
 };
-

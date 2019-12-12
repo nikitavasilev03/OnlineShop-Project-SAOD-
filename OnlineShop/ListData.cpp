@@ -46,12 +46,21 @@ int ListData::NextID() {
 	throw exception("LIST OVERFLOW");
 }
 
-shared_ptr<Entity> ListData::findById(int id) {
+shared_ptr<Entity> ListData::findById_shr(int id) {
 	for (auto item : items) {
 		if (item->GetID() == id)
 		{
-			items.remove(item);
 			return item;
+		}
+	}
+	return NULL;
+}
+
+Entity* ListData::findById(int id) {
+	for (auto item : items) {
+		if (item->GetID() == id)
+		{
+			return item->GetEntity();
 		}
 	}
 	return NULL;
