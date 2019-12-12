@@ -1,15 +1,16 @@
 #pragma once
 
-#include "stdafx.h"
-#include "System.h"
+#define SHELL_H
+
+#ifndef SYSTEM_H
+	#include "System.h"
+#endif // !SYSTEM_H
 
 class Shell
 {
 private:
 	
 public:
-	static vector<string> Split(string in_str, const char* delimiter);
-
 	Shell();
 	void Start();
 };

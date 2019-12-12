@@ -11,14 +11,3 @@
 #include <Windows.h>
 
 using namespace std;
-
-struct Date {
-	int day;
-	int mounth;
-	int year;
-	Date(int _day, int _mounth, int _year) {
-		day = _day;
-		mounth = _mounth;
-		year = _year;
-	}
-};

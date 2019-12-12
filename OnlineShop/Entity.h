@@ -5,7 +5,6 @@
 class Entity
 {
 private:
-
 	int id;
 public:
 

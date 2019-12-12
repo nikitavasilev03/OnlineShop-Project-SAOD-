@@ -1,36 +1,22 @@
 #include "System.h"
 
-shared_ptr<ProductsData> System::products = NULL;
-shared_ptr<ClientsData> System::clients = NULL;
-shared_ptr<SalesData> System::sales = NULL;
-
 void System::Start() {
-
-	products = (shared_ptr<ProductsData>)(new ProductsData());
-	clients = (shared_ptr<ClientsData>)(new ClientsData());
-	sales = (shared_ptr<SalesData>)(new SalesData());
-
 	Shell shell;
 	shell.Start();
-
 }
 
-void System::Add(shared_ptr<ListData> listData, shared_ptr<EntityBuilder> entityBuilder) {
-	auto obj = entityBuilder->Create();
-	if (obj) {
-		try
-		{
-			listData->Add(obj);
-		}
-		catch (const std::exception & exp)
-		{
-			cout << exp.what() << endl;
-		}
+void System::Add(shared_ptr<EntityBuilder> entityBuilder) {
+	try
+	{
+		auto obj = entityBuilder->Create();
+		Tables::AddToData(obj);
 	}
-	else {
-		cout << "The object is missing" << endl;
+	catch (const std::exception & exp)
+	{
+		cout << exp.what() << endl;
 	}
 }
+
 void System::Remove(shared_ptr<ListData> listData, int id) {
 
 }
@@ -51,7 +37,7 @@ void System::SaveData() {
 	fstream fs;
 	fs.open("tableProducts.table", fstream::out);
 	if (fs.is_open()) {
-		for (auto item : *products->GetItems())
+		for (auto item : *Tables::products->GetItems())
 		{
 			Product* pd = (Product*)&(*item);
 			msg = to_string(pd->GetID()) + "|" +
@@ -70,7 +56,7 @@ void System::SaveData() {
 
 	fs.open("tableClients.table", fstream::out);
 	if (fs.is_open()) {
-		for (auto item : *clients->GetItems())
+		for (auto item : *Tables::clients->GetItems())
 		{
 			Client* pd = (Client*)&(*item);
 			msg = to_string(pd->GetID()) + "|" +
@@ -90,16 +76,16 @@ void System::SaveData() {
 		cout << "SAVE DATA CLIENTS ERRORR!" << endl;
 	}
 
-	fs.open("tableSales.table", fstream::out);
+	fs.open("Tablesales.table", fstream::out);
 	if (fs.is_open()) {
-		for (auto item : *sales->GetItems())
+		for (auto item : *Tables::sales->GetItems())
 		{
 			Sale* pd = (Sale*)&(*item);
 			msg = to_string(pd->GetID()) + "|" +
 				to_string(pd->GetProductID()) + "|" +
 				to_string(pd->GetClientID()) + "|" +
-				System::DateToString(pd->GetDateSale()) + "|" +
-				System::DateToString(pd->GetDateDelivery()) + "|" +
+				DateToString(pd->GetDateSale()) + "|" +
+				DateToString(pd->GetDateDelivery()) + "|" +
 				to_string(pd->GetCount()) + "|" +
 				to_string(pd->GetSummatyPay());
 			fs << msg << endl;
@@ -118,10 +104,11 @@ void System::LoadData() {
 	fs.open("tableProducts.table", fstream::in);
 	while (fs.is_open() && !fs.eof())
 	{
-		getline(fs, msg);
+		//getline(fs, msg);
+		msg = input(fs);
 		if (msg == "")
 			continue;
-		auto strs = Shell::Split(msg, "|");
+		auto strs = Split(msg, "|");
 		if (strs.size() != 4) {
 			cout << "Load Error" << endl;
 			continue;
@@ -143,7 +130,7 @@ void System::LoadData() {
 			cout << "Load Error" << endl;
 			continue;
 		}
-		products->Add((shared_ptr<Entity>)(new Product(id, name, price, (MeasurementType)iuom)));
+		Tables::products->Add((shared_ptr<Entity>)(new Product(id, name, price, (MeasurementType)iuom)));
 	}
 	if (!fs.is_open()) {
 		cout << "Load Error" << endl;
@@ -153,10 +140,10 @@ void System::LoadData() {
 	fs.open("tableClients.table", fstream::in);
 	while (fs.is_open() && !fs.eof())
 	{
-		getline(fs, msg);
+		msg = input(fs);
 		if (msg == "")
 			continue;
-		auto strs = Shell::Split(msg, "|");
+		auto strs = Split(msg, "|");
 		if (strs.size() != 8) {
 			cout << "Load Error" << endl;
 			continue;
@@ -183,22 +170,22 @@ void System::LoadData() {
 		}
 
 		auto entity = (shared_ptr<Entity>)(new Client(id, second_name, first_name, email, last_name, address, phone));
-		auto client = (Client*)&(*entity);
+		auto client = (Client*)entity->GetEntity();
 		client->SetRegularClient(isRegularClient);
-		clients->Add(entity);
+		Tables::clients->Add(entity);
 	}
 	if (!fs.is_open()) {
 		cout << "Load Error" << endl;
 	}
 	fs.close();
 
-	fs.open("tableSales.table", fstream::in);
+	fs.open("Tablesales.table", fstream::in);
 	while (fs.is_open() && !fs.eof())
 	{
-		getline(fs, msg);
+		msg = input(fs);
 		if (msg == "")
 			continue;
-		auto strs = Shell::Split(msg, "|");
+		auto strs = Split(msg, "|");
 		if (strs.size() != 7) {
 			cout << "Load Error" << endl;
 			continue;
@@ -209,8 +196,8 @@ void System::LoadData() {
 		istringstream s_id(strs[0]);
 		istringstream s_product_id(strs[1]);
 		istringstream s_client_id(strs[2]);
-		Date date_sale = System::DateFromString(strs[3]);
-		Date date_delivery = System::DateFromString(strs[4]);
+		Date date_sale = DateFromString(strs[3]);
+		Date date_delivery = DateFromString(strs[4]);
 		istringstream s_pcount(strs[5]);
 		istringstream s_summary_pay(strs[6]);
 
@@ -228,7 +215,7 @@ void System::LoadData() {
 		auto entity = (shared_ptr<Sale>)(new Sale(id, product_id, client_id, date_sale, date_delivery, pcount));
 		auto sale = ((Sale*)&(*entity));
 		sale->SetSummaryPay(summary_pay);
-		sales->Add(entity);
+		Tables::sales->Add(entity);
 	}
 	if (!fs.is_open()) {
 		cout << "Load Error" << endl;
@@ -239,31 +226,11 @@ void System::LoadData() {
 }
 
 shared_ptr<ProductsData> System::GetProducts() {
-	return products;
+	return Tables::products;
 }
 shared_ptr<ClientsData> System::GetClients() {
-	return clients;
+	return Tables::clients;
 }
 shared_ptr<SalesData>  System::GetSales() {
-	return sales;
-}
-
-Date System::DateFromString(string in_str) {
-	auto strs = Shell::Split(in_str, ".");
-	if (strs.size() != 3)
-		return Date(0, 0, -1);
-	int day, mounth, year;
-	istringstream sday(strs[0]);
-	istringstream smounth(strs[1]);
-	istringstream syear(strs[2]);
-
-	sday >> day;
-	smounth >> mounth;
-	syear >> year;
-
-	return Date(day, mounth, year);
-}
-
-string System::DateToString(Date in_date) {
-	return to_string(in_date.day) + "." + to_string(in_date.mounth) + "." + to_string(in_date.year);
+	return Tables::sales;
 }

@@ -1,6 +1,6 @@
 #pragma once
+
 #include "EntityBuilder.h"
-#include "System.h"
 #include "Sale.h"
 
 class SaleBuilder : public EntityBuilder

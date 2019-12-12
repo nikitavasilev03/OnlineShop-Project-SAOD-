@@ -48,8 +48,8 @@ string Sale::ToString() {
 	return to_string(GetID()) + " " +
 		to_string(product_id) + " " +
 		to_string(client_id) + " " +
-		System::DateToString(date_sale) + " " +
-		System::DateToString(date_delivery) + " " +
+		DateToString(date_sale) + " " +
+		DateToString(date_delivery) + " " +
 		to_string(pcount) + " " +
 		to_string(summary_pay);
 }

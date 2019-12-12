@@ -11,37 +11,32 @@ shared_ptr<Entity> ClientBuilder::CreateFromInputStream() {
 	string phone;
 	string email;
 
-	cout << "Создание нового клиента" << endl;
+	cout << "-----Создание нового клиента-----" << endl;
 
 	cout << "Введите фамилию (это обязательное поле): ";
-	getline(cin, second_name);
+	second_name = input(cin);
 	if (second_name == "") {
-		cout << "Не коректный ввод" << endl;
-		return NULL;
+		throw exception("Не коректный ввод");
 	}
 
 	cout << "Введите имя (это обязательное поле): ";
-	getline(cin, first_name);
+	first_name = input(cin);
 	if (first_name == "") {
-		cout << "Не коректный ввод" << endl;
-		return NULL;
+		throw exception("Не коректный ввод");
 	}
 
 	cout << "Введите отчество: ";
-	getline(cin, last_name);
+	last_name = input(cin);
 
 	cout << "Введите E-mail (это обязательное поле): ";
-	getline(cin, email);
+	email = input(cin);
 	if (email == "") {
-		cout << "Не коректный ввод" << endl;
-		return NULL;
+		throw exception("Не коректный ввод");
 	}
 
 	cout << "Введите телефон: ";
-	getline(cin, phone);
-
+	phone = input(cin);
 	cout << "Введите адрес: ";
-	getline(cin, address);
-
+	address = input(cin);
 	return  (shared_ptr<Entity>)(new Client(second_name, first_name, email, last_name, address, phone));
 }

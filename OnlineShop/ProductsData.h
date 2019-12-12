@@ -12,7 +12,6 @@ public:
 		if (item->GetID() == 0)
 			item->SetID(NextID());
 		ListData::Add(item);
-		Product* product = NULL;
 	}
 };
 

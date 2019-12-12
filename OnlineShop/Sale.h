@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Entity.h"
-#include "System.h"
+#include "Environment.h"
 
 class Sale :
 	public Entity

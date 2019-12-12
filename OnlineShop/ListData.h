@@ -6,7 +6,7 @@ class ListData
 {
 private:
 	list<shared_ptr<Entity>> items;
-	int current_id;
+	shared_ptr<Entity> findById(int id);
 public:
 	ListData();
 	virtual void Add(shared_ptr<Entity> item);

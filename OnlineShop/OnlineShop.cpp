@@ -1,10 +1,10 @@
-﻿#include "ProductBuilder.h"
-#include "System.h"
-
+﻿#ifndef SYSTEM_H
+	#include "System.h"
+#endif // !SYSTEM_H
 
 int main()
 {
-	setlocale(LC_ALL, "ru");
+	setlocale(LC_ALL, "ru");	
 
 	System sys;
 	sys.Start();

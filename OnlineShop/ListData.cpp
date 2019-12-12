@@ -1,7 +1,6 @@
 #include "ListData.h"
 
 ListData::ListData() {
-	current_id = 0;
 }
 
 void ListData::Add(shared_ptr<Entity> item) {
@@ -23,7 +22,7 @@ void ListData::Remove(int id) {
 }
 
 int ListData::GetCount() {
-	return items.size();
+	return (int)items.size();
 }
 
 list<shared_ptr<Entity>>* ListData::GetItems() {
@@ -31,6 +30,29 @@ list<shared_ptr<Entity>>* ListData::GetItems() {
 }
 
 int ListData::NextID() {
-	current_id++;
-	return current_id;
+	if (items.size() == 0)
+		return 1;
+
+	auto item = items.end();
+	int new_id = (*(--item))->GetID() + 1;
+	if (findById(new_id) == NULL)
+		return new_id;
+
+	for (int i = 0; i < INT_MAX; i++) {
+		if (findById(i) == NULL) {
+			return i;
+		}
+	}
+	throw exception("LIST OVERFLOW");
+}
+
+shared_ptr<Entity> ListData::findById(int id) {
+	for (auto item : items) {
+		if (item->GetID() == id)
+		{
+			items.remove(item);
+			return item;
+		}
+	}
+	return NULL;
 }

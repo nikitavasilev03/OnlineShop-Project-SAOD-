@@ -1,6 +1,8 @@
 #pragma once
+
 #include "EntityBuilder.h"
 #include "Client.h"
+
 class ClientBuilder : public EntityBuilder
 {
 public:

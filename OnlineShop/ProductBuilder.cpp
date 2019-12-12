@@ -1,6 +1,5 @@
 #include "ProductBuilder.h"
 
-
 shared_ptr<Entity> ProductBuilder::Create() {
 	return CreateFromInputStream();
 }
@@ -9,52 +8,38 @@ shared_ptr<Entity> ProductBuilder::CreateFromInputStream() {
 	string name, sprice, siom;
 	int price;
 	int iuom;
-	MeasurementType uom;
 	
-	cout << "Создание нового продукта" << endl;
+	cout << "-----Создание нового продукта-----" << endl;
 
 	cout << "Введите имя: ";
-	getline(cin, name);
+	name = input(cin);
+	if (name == "") {
+		throw exception("Не коректный ввод");
+	}
 
 	cout << "Введите цену: ";
-	getline(cin, sprice);
+	sprice = input(cin);
 	istringstream str_to_price(sprice);
 	str_to_price >> price;
 	
 	if (str_to_price.fail()) {
-		cout << "Не коректный ввод" << endl;
-		return NULL;
+		throw exception("Не коректный ввод");
 	}
-	
 	if (price < 0)
 	{
-		cout << "Не коректный ввод(цена)" << endl;
-		return NULL;
+		throw exception("Не коректный ввод");
 	}
 
 	cout << "Введите единицу измерения (Штуки = 0, Килограммы = 1, Литры = 2): ";
-	getline(cin, siom);
+	siom = input(cin);
 	istringstream str_to_iuom(siom);
 	str_to_iuom >> iuom;
 	if (str_to_iuom.fail()) {
-		cout << "Не коректный ввод" << endl;
-		return NULL;
+		throw exception("Не коректный ввод");
 	}
-	switch (iuom)
-	{
-	case 0:
-		uom = Counts;
-		break;
-	case 1:
-		uom = Kilograms;
-		break;
-	case 2:
-		uom = Liters;
-		break;
-	default:
-		cout << "Не коректный ввод (единицы измерения)" << endl;
-		return NULL;
-		break;
+	if (iuom < 0 || iuom > 2) {
+		throw exception("Не коректный ввод");
 	}
-	return (shared_ptr<Entity>)(new Product(name, price, uom));
+
+	return (shared_ptr<Entity>)(new Product(name, price, (MeasurementType)iuom));
 }

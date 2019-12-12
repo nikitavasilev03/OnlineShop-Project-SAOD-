@@ -5,39 +5,37 @@ Shell::Shell() {
 }
 
 void Shell::Start() {
-	string input;
+	string str;
 
 	cout << "Добро пожаловать в систему комерческого отдела компании" << endl;
 	cout << "Загрузить базу данных? (y/n)" << endl;
 	cout << "-> ";
-	getline(cin, input);
-	if (input == "y") {
+	//getline(cin, input);
+	str = input(cin);
+	if (str == "y") {
 		System::LoadData();
 	}
 
 	while (true)
 	{
 		cout << "-> ";
-		getline(cin, input);
-		if (input == "")
+		str = input(cin);
+		//getline(cin, input);
+		if (str == "")
 			continue;
-		vector<string> strs = Split(input, " ");
-		//cout << strs.size() << endl;
-		//Тип данных
+		vector<string> strs = Split(str, " ");
 
 		if (strs.size() == 1) {
 			if (strs[0] == "clear") {
 				system("CLS");
 			}
-			if (strs[0] == "exit") {
-				
+			else if (strs[0] == "exit") {
 				cout << "Сохранить базу данных? (y/n)" << endl;
 				cout << "-> ";
-				getline(cin, input);
-				if (input == "y") {
+				str = input(cin);
+				if (str == "y") {
 					System::SaveData();
 				}
-
 				cout << "Goodbye :)" << endl;
 				break;
 			}
@@ -46,7 +44,6 @@ void Shell::Start() {
 				cout << "Некоректный ввод" << endl;
 			}
 		}
-
 		else if (strs.size() == 2) {
 			shared_ptr<ListData> listData = NULL;
 			shared_ptr<EntityBuilder> eb = NULL;
@@ -65,7 +62,7 @@ void Shell::Start() {
 
 			//Тип операции
 			if (strs[0] == "add" && listData) {
-				System::Add(listData, eb);
+				System::Add(eb);
 			}
 			else if (strs[0] == "print" && listData) {
 				System::Print(listData);
@@ -74,23 +71,8 @@ void Shell::Start() {
 				cout << "Некоректный ввод" << endl;
 			}	
 		}
-
-		else
-		{
+		else {
 			cout << "Некоректный ввод" << endl;
 		}
 	}
 }
-
-vector<string> Shell::Split(string in_str, const char* delimiter) {
-	vector<string> str_arr;
-	char* next_token = NULL;
-	char* current_token = strtok_s(&in_str[0], delimiter, &next_token);
-	while (current_token)
-	{
-		str_arr.push_back(current_token);
-		current_token = strtok_s(NULL, delimiter, &next_token);
-	}
-	return str_arr;
-}
-
