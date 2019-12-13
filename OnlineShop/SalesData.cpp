@@ -20,11 +20,11 @@ void SalesData::EditItem(Entity* new_item) {
 	item->SetDateSale(sale->GetDateSale());
 	item->SetDateDelivery(sale->GetDateDelivery());
 	item->SetCount(sale->GetCount());
-	item->SetSummaryPay(sale->GetSummatyPay());
+	item->SetTotalPrice(sale->GetTotalPrice());
 }
 //int product_id;
 //int client_id;
 //Date date_sale;
 //Date date_delivery;
 //int pcount;
-//int summary_pay;
+//int total_price;

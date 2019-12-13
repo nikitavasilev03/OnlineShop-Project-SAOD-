@@ -22,10 +22,11 @@ public:
 	Product(int id, string name, int price, MeasurementType uom);
 
 	string GetName();
-	void SetName(string new_name);
 	int GetPrice();
-	void SetPrice(int new_price);
 	MeasurementType GetUOM();
+
+	void SetName(string new_name);
+	void SetPrice(int new_price);
 	void SetUOM(MeasurementType new_uom);
 	
 	string ToString() override;

@@ -11,8 +11,7 @@ private:
 	string phone;
 	string email;
 	bool isRegularClient;
-
-	int total_money;
+	int total_pay;
 
 	void Init(string _second_name, string _first_name, string _email, string _last_name, string _address, string _phone);
 public:
@@ -39,8 +38,8 @@ public:
 	void SetEmail(string email);
 	void SetPhone(string phone);
 	void SetRegularClient(bool f = true);
-	void SetTotalMoney(int money);
-	void IncTotalMoney(int money);
+	void SetTotalPay(int money);
+	void IncTotalPay(int money);
 
 	string ToString() override;
 };

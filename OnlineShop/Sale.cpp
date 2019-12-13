@@ -4,21 +4,21 @@ Sale::Sale() : Entity(), date_sale(0, 0, 0), date_delivery(0, 0, 0) {
 	product_id = 0;
 	client_id = 0;
 	pcount = 0;
-	summary_pay = 0;
+	total_price = 0;
 }
 
 Sale::Sale(int _product_id, int _client_id, Date _date_sale, Date _date_delivery, int _count) : Entity(), date_sale(_date_sale), date_delivery(_date_delivery) {
 	product_id = _product_id;
 	client_id = _client_id;
 	pcount = _count;
-	summary_pay = 0;
+	total_price = 0;
 }
 
 Sale::Sale(int id, int _product_id, int _client_id, Date _date_sale, Date _date_delivery, int _count) : Entity(id), date_sale(_date_sale), date_delivery(_date_delivery) {
 	product_id = _product_id;
 	client_id = _client_id;
 	pcount = _count;
-	summary_pay = 0;
+	total_price = 0;
 }
 
 int Sale::GetProductID() {
@@ -36,8 +36,8 @@ Date Sale::GetDateDelivery() {
 int Sale::GetCount() {
 	return pcount;
 }
-int Sale::GetSummatyPay() {
-	return summary_pay;
+int Sale::GetTotalPrice() {
+	return total_price;
 }
 
 void Sale::SetProductID(int id) {
@@ -55,8 +55,8 @@ void Sale::SetDateDelivery(Date date) {
 void Sale::SetCount(int _count) {
 	this->pcount = _count;
 }
-void Sale::SetSummaryPay(int pay) {
-	summary_pay = pay;
+void Sale::SetTotalPrice(int pay) {
+	total_price = pay;
 }
 
 string Sale::ToString() {
@@ -67,5 +67,5 @@ string Sale::ToString() {
 		"Date sale: " + DateToString(date_sale) + ",  " +
 		"Date delivery: " + DateToString(date_delivery) + ",  " +
 		"Count: " + to_string(pcount) + ",  " +
-		"Total price: " + to_string(summary_pay);
+		"Total price: " + to_string(total_price);
 }

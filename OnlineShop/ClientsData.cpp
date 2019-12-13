@@ -22,5 +22,5 @@ void ClientsData::EditItem(Entity* new_item) {
 	item->SetEmail(client->GetEmail());
 	item->SetPhone(client->GetPhone());
 	item->SetRegularClient(client->IsRegularClient());
-	item->SetTotalMoney(client->GetTotalMoney());
+	item->SetTotalPay(client->GetTotalMoney());
 }

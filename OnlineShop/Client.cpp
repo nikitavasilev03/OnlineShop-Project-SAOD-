@@ -44,7 +44,7 @@ void Client::Init(string _second_name, string _first_name, string _email, string
 		phone = _phone;
 
 	isRegularClient = false;
-	total_money = 0;
+	total_pay = 0;
 }
 
 string Client::GetSecondName() {
@@ -69,17 +69,17 @@ bool Client::IsRegularClient() {
 	return isRegularClient;
 }
 int Client::GetTotalMoney() {
-	return total_money;
+	return total_pay;
 }
 
 void Client::SetRegularClient(bool f) {
 	isRegularClient = f;
 }
-void Client::SetTotalMoney(int money) {
-	total_money = money;
+void Client::SetTotalPay(int money) {
+	total_pay = money;
 }
-void Client::IncTotalMoney(int money) {
-	total_money += money;
+void Client::IncTotalPay(int money) {
+	total_pay += money;
 }
 
 void Client::SetSecondName(string name) {
@@ -111,5 +111,5 @@ string Client::ToString() {
 		"Phone: " + phone + ",  " +
 		"Address: " + address + ",  " +
 		"Is regular client: " + to_string(isRegularClient) + ",  " +
-		"Total pay: " + to_string(total_money);
+		"Total pay: " + to_string(total_pay);
 }

@@ -12,7 +12,7 @@ private:
 	Date date_sale;
 	Date date_delivery;
 	int pcount;
-	int summary_pay;
+	int total_price;
 public:
 	Sale();
 	Sale(int _product_id, int _client_id, Date _date_sale, Date _date_delivery, int _count);
@@ -23,14 +23,14 @@ public:
 	Date GetDateSale();
 	Date GetDateDelivery();
 	int GetCount();
-	int GetSummatyPay();
+	int GetTotalPrice();
 
 	void SetProductID(int id);
 	void SetClientID(int id);
 	void SetDateSale(Date date);
 	void SetDateDelivery(Date date);
 	void SetCount(int _count);
-	void SetSummaryPay(int pay);
+	void SetTotalPrice(int pay);
 
 	string ToString() override;
 };

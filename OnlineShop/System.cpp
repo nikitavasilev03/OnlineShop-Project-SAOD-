@@ -106,7 +106,7 @@ void System::SaveData() {
 				DateToString(pd->GetDateSale()) + "|" +
 				DateToString(pd->GetDateDelivery()) + "|" +
 				to_string(pd->GetCount()) + "|" +
-				to_string(pd->GetSummatyPay());
+				to_string(pd->GetTotalPrice());
 			fs << msg << endl;
 		}
 		fs.close();
@@ -167,7 +167,7 @@ void System::LoadData() {
 			continue;
 		}
 
-		int id, total_money;
+		int id, total_pay;
 		bool isRegularClient;
 
 		istringstream sid(strs[0]);
@@ -182,7 +182,7 @@ void System::LoadData() {
 
 		sisRegularClient >> isRegularClient;
 		sid >> id;
-		sisTotalMoney >> total_money;
+		sisTotalMoney >> total_pay;
 
 		if (sid.fail() || sisRegularClient.fail() || sisTotalMoney.fail()) {
 			cout << "Load Error" << endl;
@@ -192,7 +192,7 @@ void System::LoadData() {
 		auto entity = (shared_ptr<Entity>)(new Client(id, second_name, first_name, email, last_name, address, phone));
 		auto client = (Client*)entity->GetEntity();
 		client->SetRegularClient(isRegularClient);
-		client->SetTotalMoney(total_money);
+		client->SetTotalPay(total_pay);
 		Tables::clients->Add(entity);
 	}
 	if (!fs.is_open()) {
@@ -212,7 +212,7 @@ void System::LoadData() {
 			continue;
 		}
 
-		int id, product_id, client_id, pcount, summary_pay;
+		int id, product_id, client_id, pcount, total_price;
 		//string 
 		istringstream s_id(strs[0]);
 		istringstream s_product_id(strs[1]);
@@ -220,22 +220,22 @@ void System::LoadData() {
 		Date date_sale = DateFromString(strs[3]);
 		Date date_delivery = DateFromString(strs[4]);
 		istringstream s_pcount(strs[5]);
-		istringstream s_summary_pay(strs[6]);
+		istringstream s_total_price(strs[6]);
 
 		s_id >> id;
 		s_product_id >> product_id;
 		s_client_id >> client_id;
 		s_pcount >> pcount;
-		s_summary_pay >> summary_pay;
+		s_total_price >> total_price;
 
-		if (s_id.fail() || s_product_id.fail() || s_client_id.fail() || s_pcount.fail() || s_summary_pay.fail() || date_sale.year == -1 || date_delivery.year == -1) {
+		if (s_id.fail() || s_product_id.fail() || s_client_id.fail() || s_pcount.fail() || s_total_price.fail() || date_sale.year == -1 || date_delivery.year == -1) {
 			cout << "Load Error" << endl;
 			continue;
 		}
 
 		auto entity = (shared_ptr<Sale>)(new Sale(id, product_id, client_id, date_sale, date_delivery, pcount));
 		auto sale = ((Sale*)&(*entity));
-		sale->SetSummaryPay(summary_pay);
+		sale->SetTotalPrice(total_price);
 		Tables::sales->Add(entity);
 	}
 	if (!fs.is_open()) {
