@@ -68,7 +68,7 @@ string Client::GetPhone() {
 bool Client::IsRegularClient() {
 	return isRegularClient;
 }
-int Client::GetTotalMoney() {
+int Client::GetTotalPay() {
 	return total_pay;
 }
 

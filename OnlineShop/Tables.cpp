@@ -68,7 +68,7 @@ void Tables::AddToItem(Sale* sale, shared_ptr<Entity> entity) {
 		else
 			sale->SetTotalPrice(sale->GetCount() * product->GetPrice());
 		client->IncTotalPay(sale->GetTotalPrice());
-		if (client->GetTotalMoney() >= client->TOTAL_PAY_FOR_REGULAR_CLIENT)
+		if (client->GetTotalPay() >= client->TOTAL_PAY_FOR_REGULAR_CLIENT)
 			client->SetRegularClient();
 		sales->Add(entity);
 	}
@@ -122,7 +122,7 @@ void Tables::RemoveItem(Sale* sale, shared_ptr<Entity> entity) {
 		if (ent_client) {
 			Client* client = (Client*)ent_client;
 			client->IncTotalPay(-cur_sale->GetTotalPrice());
-			if (client->GetTotalMoney() < client->TOTAL_PAY_FOR_REGULAR_CLIENT)
+			if (client->GetTotalPay() < client->TOTAL_PAY_FOR_REGULAR_CLIENT)
 				client->SetRegularClient(false);
 		}
 		sales->Remove(sale->GetID());

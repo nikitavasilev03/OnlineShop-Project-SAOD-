@@ -85,7 +85,7 @@ void System::SaveData() {
 				pd->GetAddress() + "|" +
 				pd->GetPhone() + "|" +
 				to_string(pd->IsRegularClient()) + "|" +
-				to_string(pd->GetTotalMoney());
+				to_string(pd->GetTotalPay());
 
 			fs << msg << endl;
 		}

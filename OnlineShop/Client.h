@@ -29,7 +29,7 @@ public:
 	string GetEmail();
 	string GetPhone();
 	bool IsRegularClient();
-	int GetTotalMoney();
+	int GetTotalPay();
 
 	void SetSecondName(string name);
 	void SetFirstName(string name);
